@@ -19,9 +19,7 @@ public class XmlParser {
         Unmarshaller AddressUnmarshaller = AddressContext.createUnmarshaller();
         AddressObjects addressObjects = (AddressObjects) AddressUnmarshaller.unmarshal(file);
 
-        List<Address> list = addressObjects.getAddressList();
-
-        return list;
+        return addressObjects.getAddressList();
     }
 
     public static List<Hierarchy> parseHierarchy(File file) throws JAXBException {
@@ -30,9 +28,7 @@ public class XmlParser {
         Unmarshaller AddressUnmarshaller = AddressContext.createUnmarshaller();
         HierarchyObjects hierarchyObjects = (HierarchyObjects) AddressUnmarshaller.unmarshal(file);
 
-        List<Hierarchy> list = hierarchyObjects.getHierarchyList();
-
-        return list;
+        return hierarchyObjects.getHierarchyList();
     }
 
 }

@@ -5,10 +5,8 @@ import testxml.entities.Hierarchy;
 import testxml.xml.XmlParser;
 import javax.xml.bind.JAXBException;
 import java.io.*;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -93,9 +91,9 @@ public class Main {
             return false;
         }).collect(Collectors.toList());
 
-        filteredAddress.forEach(address -> {
+        for (Address address : filteredAddress) {
             System.out.println(address.getObjectID() + ": " + address.getTypename() + " " + address.getName());
-        });
+        }
 
     }
 
@@ -109,9 +107,9 @@ public class Main {
                 .filter(address -> address.isActual() || address.isActive())
                 .collect(Collectors.toList());
 
-        filteredList.forEach(address -> {
-            ids.add(address.getObjectID());
-        });
+        for (Address address1 : filteredList) {
+            ids.add(address1.getObjectID());
+        }
 
         List<Hierarchy> hierarchies = hierarchyList.stream()
                 .filter(hierarchy -> ids.contains(hierarchy.getObjectID()))
@@ -146,7 +144,8 @@ public class Main {
                         .filter(a -> a.getObjectID().equals(elem))
                         .findFirst().orElse(null);
 
-                 addr += address.getTypename() + " " + address.getName() + ", ";
+                assert address != null;
+                addr += address.getTypename() + " " + address.getName() + ", ";
             }
 
             System.out.println(addr);
